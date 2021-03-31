@@ -1,10 +1,16 @@
 import React from 'react';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
+
 import clsx from 'clsx';
+import SettingsIcon from '@material-ui/icons/Settings';
 import { useHistory } from "react-router";
 import { withRouter } from "react-router-dom";
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import Ports from './Pages/Ports';
+ import Ports from './Pages/Ports';
+ import MenuBookIcon from '@material-ui/icons/MenuBook';
+ import Voyagelist from '../src/Pages/Voyagelist';
 import Box from '@material-ui/core/Box';
+import ViewAgendaIcon from '@material-ui/icons/ViewAgenda';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -25,6 +31,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './App.css';
 import { Grid } from '@material-ui/core';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 import SearchIcon from '@material-ui/icons/Search';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import Drawer from '@material-ui/core/Drawer';
@@ -196,7 +203,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
-      width: 'auto',
+      // width: 'auto',
     },
   },
   searchIcon: {
@@ -238,7 +245,7 @@ const Countrylist = (props) => {
   const routechange = () => {
     // let history = useHistory();
 
-    props.history.push("/Countrylist");
+    props.history.push("/Voyagelist");
   }
   const handleDrawerClose = () => {
     setOpen(false);
@@ -298,22 +305,22 @@ const Countrylist = (props) => {
         <List style={{ backgroundColor: "black", justifyContent: "space-between", width: "500px" }}>
 
 
-          <ContactMailIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px", marginTop: "30px" }}><span style={{ color: "white", display: "flex" }}><h2>Address Book</h2></span></ContactMailIcon>
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
-
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
-
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
-
+          <ContactMailIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "15px", marginTop: "20px" }}><span style={{ color: "white", display: "flex" }}><h2>Address Book</h2></span></ContactMailIcon>
+          <MenuBookIcon style={{ color: "white", display: "grid", marginBottom: "5px", marginLeft: "20px" }}></MenuBookIcon>
+          <ViewAgendaIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></ViewAgendaIcon>
           <InboxIcon onClick={() => routechange()} style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
+          <SwapHorizIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></SwapHorizIcon>
 
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
+          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></InboxIcon>
 
+
+          <SettingsIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></SettingsIcon>
           <LockOutlinedIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></LockOutlinedIcon>
 
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
 
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
+          <LocationOnIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></LocationOnIcon>
+
+          <LocationOnIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></LocationOnIcon>
 
         </List>
 
@@ -321,17 +328,25 @@ const Countrylist = (props) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Grid container style={{ backgroundColor: "lightblue" }}>
-          < Grid item xs={12} md={12} style={{ display: "flex", justifyContent: "space-between" }} >
+          {/* <Grid item xs={12} md={12} style={{ display: "flex", justifyContent: "space-between" }} > */}
+          <Grid item xs={12} md={3} lg={3}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <Typography style={{ marginRight: "20px" }}>
-                <h9>
-                  Country  List </h9>   </Typography>
+                <h9>Country  List</h9>
+              </Typography>
 
               <Button size="small" variant="outlined" color="primary">
                 <h7> + Add View</h7>
               </Button>
             </div>
+          </Grid>
 
+          <Grid md={3} xs={12} lg={3}>
+
+          </Grid>
+
+          <Grid md={3} xs={12} lg={3} style={{display: "flex",
+    justifyContent: "center"}}>
             <div marginRight="10px" className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon marginLeft="10px" />
@@ -345,14 +360,18 @@ const Countrylist = (props) => {
                 }}
                 inputProps={{ 'aria-label': 'search' }}
               />
-
             </div>
-            <div>
+          </Grid>
+
+
+          <Grid md={3} xs={12} lg={3} style={{display: "flex",
+    justifyContent: "center"}}>
               <ReplayIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
               <CloudDownloadIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
-            </div>
+          </Grid>
 
-          </ Grid>
+
+          {/* </ Grid> */}
         </Grid>
         <Grid container>
           <Grid item xs={12} md={12}>
@@ -397,7 +416,20 @@ const Countrylist = (props) => {
             </TableContainer>
           </Grid>
           <Grid item xs={3} md={3}>
-            
+          <div marginRight="10px" className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon marginLeft="10px" />
+              </div>
+
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </div>
 
           </Grid>
         </Grid>
