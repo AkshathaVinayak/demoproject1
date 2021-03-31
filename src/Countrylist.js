@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { useHistory } from "react-router";
 import { withRouter } from "react-router-dom";
-import {BrowserRouter as Router, Link,  Route} from 'react-router-dom';
-import Ports from './Pages/Ports'; 
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import Ports from './Pages/Ports';
 import Box from '@material-ui/core/Box';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -40,6 +40,7 @@ import { green } from '@material-ui/core/colors';
 import InputBase from '@material-ui/core/InputBase';
 import { PinDropSharp } from '@material-ui/icons';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
 const columns = [
   { id: 'cname', label: 'Country Name', minWidth: 170 },
   { id: 'isocode', label: 'Country\u00a0Code', minWidth: 100 },
@@ -86,9 +87,9 @@ const columns = [
     format: (value) => value.toFixed(2),
   },
 ];
-function createData(cname, isocode, LMB, LMO, WR,AMS, SCA, FRI) {
+function createData(cname, isocode, LMB, LMO, WR, AMS, SCA, FRI) {
   // const WR = LMB / LMO;
-  return { cname, isocode, LMB, LMO, WR,AMS, SCA, FRI };
+  return { cname, isocode, LMB, LMO, WR, AMS, SCA, FRI };
 }
 
 const rows = [
@@ -156,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
-      backgroundColor:green,
+      backgroundColor: green,
 
     }),
   },
@@ -184,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   search: {
-    marginRight: '-650px',
+    marginRight: '-200px',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.45),
@@ -226,7 +227,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Drawers(props) {
+const Countrylist = (props) => {
 
   const classes = useStyles();
   // const theme = useTheme();
@@ -234,19 +235,19 @@ function Drawers(props) {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-  const routechange=()=>{
+  const routechange = () => {
     // let history = useHistory();
 
-    props.history.push("/Drawers");
-    }
+    props.history.push("/Countrylist");
+  }
   const handleDrawerClose = () => {
     setOpen(false);
   };
- // const {history}=props;
+  // const {history}=props;
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Routes/>
+      {/* <Routes/> */}
       <AppBar style={{ backgroundColor: "white" }} xs={6}
         position="fixed"
         className={clsx(classes.appBar, {
@@ -263,20 +264,20 @@ function Drawers(props) {
             })}
           > <MenuIcon style={{ color: "grey" }} />
           </IconButton>
-          <Typography variant="h7" paddingRight="10px" noWrap style={{ color: "grey" , display: 'inline-table'}}>
+          <Typography variant="h7" paddingRight="10px" noWrap style={{ color: "grey", display: 'inline-table' }}>
             DATA CENTER
       </Typography>
-          <Box color="blue" bgcolor="background.paper" p={1} paddingRight="10px" paddingLeft="1000px">
+          <Box color="blue" bgcolor="background.paper" p={1} paddingRight="10px" paddingLeft="800px">
             Analytics
       </Box>
-          <Box color="blue" bgcolor="background.paper" p={1} >
+          <Box color="red" bgcolor="background.paper" p={1} >
             Documents
       </Box>
           <SupervisedUserCircleIcon style={{ color: "teal" }} />
         </Toolbar>
       </AppBar>
-      <Drawer 
-      
+      <Drawer
+
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
@@ -294,28 +295,28 @@ function Drawers(props) {
           </IconButton>
         </div>
 
-        <List style={{backgroundColor:"black", justifyContent:"space-between", width:"500px"}}>
+        <List style={{ backgroundColor: "black", justifyContent: "space-between", width: "500px" }}>
 
 
-          <ContactMailIcon style={{color:"white", display:"grid", marginBottom:"35px", marginLeft:"20px" , marginTop:"30px"}}><span style={{color:"white", display:"flex"}}><h2>Address Book</h2></span></ContactMailIcon>
-          <InboxIcon style={{color:"white" , display:"grid", marginBottom:"35px", marginLeft:"20px"}}></InboxIcon>
+          <ContactMailIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px", marginTop: "30px" }}><span style={{ color: "white", display: "flex" }}><h2>Address Book</h2></span></ContactMailIcon>
+          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
 
-          <InboxIcon style={{color:"white" , display:"grid", marginBottom:"35px", marginLeft:"20px"}}></InboxIcon>
+          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
 
-          <InboxIcon style={{color:"white" , display:"grid", marginBottom:"35px", marginLeft:"20px"}}></InboxIcon>
+          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
 
-          <InboxIcon onClick={() => routechange()} style={{color:"white", display:"grid", marginBottom:"35px", marginLeft:"20px"}}></InboxIcon>
+          <InboxIcon onClick={() => routechange()} style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
 
-          <InboxIcon style={{color:"white", display:"grid", marginBottom:"35px", marginLeft:"20px"}}></InboxIcon>
+          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
 
-          <LockOutlinedIcon style={{color:"white", display:"grid", marginBottom:"35px", marginLeft:"20px"}}></LockOutlinedIcon>
+          <LockOutlinedIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></LockOutlinedIcon>
 
-          <InboxIcon style={{color:"white", display:"grid", marginBottom:"35px", marginLeft:"20px"}}></InboxIcon>
+          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
 
-          <InboxIcon style={{color:"white", display:"grid", marginBottom:"35px", marginLeft:"20px"}}></InboxIcon>
+          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
 
         </List>
-        
+
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
@@ -330,7 +331,7 @@ function Drawers(props) {
                 <h7> + Add View</h7>
               </Button>
             </div>
-            
+
             <div marginRight="10px" className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon marginLeft="10px" />
@@ -344,12 +345,12 @@ function Drawers(props) {
                 }}
                 inputProps={{ 'aria-label': 'search' }}
               />
-              
+
             </div>
-<div> 
-<ReplayIcon style={{marginRight:"10px" , paddingTop:"10px"}}/>
-              <CloudDownloadIcon style={{marginRight:"10px" , paddingTop:"10px"}} />
-</div>
+            <div>
+              <ReplayIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
+              <CloudDownloadIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
+            </div>
 
           </ Grid>
         </Grid>
@@ -358,45 +359,45 @@ function Drawers(props) {
             <Typography>Drag here to set row groups</Typography>
           </Grid>
         </Grid>
-        {/* <Divider /> */}
+        <Divider />
         <Grid container>
           <Grid item xs={9} md={9}>
-          <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.slice().map((row) => {
-              return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.isocode}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
+            <TableContainer className={classes.container}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        style={{ minWidth: column.minWidth }}
+                      >
+                        {column.label}
                       </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.slice().map((row) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.isocode}>
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.format && typeof value === 'number' ? column.format(value) : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
                     );
                   })}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Grid>
           <Grid item xs={3} md={3}>
-            gggggggggggggggggggggggggg
+            
 
           </Grid>
         </Grid>
@@ -404,4 +405,4 @@ function Drawers(props) {
     </div>
   );
 }
-export default Drawers;
+export default Countrylist;

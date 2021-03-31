@@ -3,27 +3,23 @@ import Loadable from 'react-loadable';
 import Loading from "../ui-molecules/Loading/index";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-// const App = Loadable({
-//     loader: () => import("../App"),
-//     loading: Loading
-// });
 const Ports = Loadable({
     loader: () => import("../Pages/Ports"),
     loading: Loading
 });
-const Drawers = Loadable({
-    loader: () => import("../Drawers"),
+const Countrylist = Loadable({
+    loader: () => import("../Countrylist"),
     loading: Loading
 });
 const Routes = () => {
     return (
         <div>
-             {/* <Route exact path="/" component={App} /> */}
-                {/* <Route path="/Ports" component={Ports} /> */}
-                <Route exact path="/" component={Drawers} />
+            <Router>
+                <Route exact path="/" component={Countrylist} />
+                <Route  path="/Ports" component={Ports} />
 
+            </Router>
         </div>
     );
 };
-
 export default Routes;
