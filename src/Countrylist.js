@@ -1,14 +1,16 @@
 import React from 'react';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
-
+import SportsGolfIcon from '@material-ui/icons/SportsGolf';
 import clsx from 'clsx';
+import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
+
 import SettingsIcon from '@material-ui/icons/Settings';
 import { useHistory } from "react-router";
 import { withRouter } from "react-router-dom";
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
- import Ports from './Pages/Ports';
- import MenuBookIcon from '@material-ui/icons/MenuBook';
- import Voyagelist from '../src/Pages/Voyagelist';
+import Ports from '../src/Pages/Ports';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Voyagelist from '../src/Pages/Voyagelist';
 import Box from '@material-ui/core/Box';
 import ViewAgendaIcon from '@material-ui/icons/ViewAgenda';
 import Table from '@material-ui/core/Table';
@@ -54,35 +56,35 @@ const columns = [
   {
     id: 'LMB',
     label: 'Last Modified By',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'LMO',
     label: 'Lat Modified On',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'WR',
     label: 'War Risk(Y/N)',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
   {
     id: 'AMS',
     label: 'AMS (Y/N)',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
   {
     id: 'SCA',
     label: 'SCA (Y/N)',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
@@ -100,26 +102,26 @@ function createData(cname, isocode, LMB, LMO, WR, AMS, SCA, FRI) {
 }
 
 const rows = [
-  createData('KAZAKHSTAN', 'KZ', '', ''),
-  createData('ANTARCTICA', 'AQ', '', ''),
-  createData('WEST BANK', 'PS', '', ''),
-  createData('PACIFIC ISLANDS', 'PW', '', ''),
-  createData('ARCTIC OCEAN', 'XQ', '', ''),
-  createData('UNITED STATES', 'US', '', ''),
-  createData('RUSSIA', 'RU', '', ''),
-  createData('EGYPT', 'EG', '', ''),
-  createData('SOUTH AFRICA', 'ZA', '', ''),
-  createData('GREECE', 'GR', '', ''),
-  createData('NETHERLANDS', 'NL', '', ''),
-  createData('BELGIUM', 'BE', '', ''),
-  createData('FRANCE', 'FR', '', ''),
-  createData('SPAIN', 'ES', '', ''),
-  createData('HUNGARY', 'HU', '', ''),
-  createData('HUNGMACEDONIA FARMERARY', 'MK', '', ''),
-  createData('ITALY', 'IT', '', ''),
-  createData('ROMANIA', 'RO', '', ''),
-  createData('SWITGERLAND', 'CH', '', ''),
-  createData('AUSTRIA', 'AT', '', ''),
+  createData('KAZAKHSTAN', 'KZ', '', '', 'false', 'false', 'false', 'false'),
+  createData('ANTARCTICA', 'AQ', '', '', 'false', 'false', 'false', 'false'),
+  createData('WEST BANK', 'PS', '', '', 'false', 'false', 'false', 'false'),
+  createData('PACIFIC ISLANDS', 'PW', '', '', 'false', 'false', 'false', 'false'),
+  createData('ARCTIC OCEAN', 'XQ', '', '', 'false', 'false', 'false', 'false'),
+  createData('UNITED STATES', 'US', '', '', 'false', 'true', 'false', 'false'),
+  createData('RUSSIA', 'RU', '', '', 'false', 'false', 'false', 'false'),
+  createData('EGYPT', 'EG', '', '', 'false', 'false', 'false', 'false'),
+  createData('SOUTH AFRICA', 'ZA', '', '', 'false', 'false', 'false', 'false'),
+  createData('GREECE', 'GR', '', '', 'false', 'false', 'false', 'false'),
+  createData('NETHERLANDS', 'NL', '', '', 'false', 'false', 'false', 'false'),
+  createData('BELGIUM', 'BE', '', '', 'false', 'false', 'false', 'false'),
+  createData('FRANCE', 'FR', '', '', 'false', 'false', 'false', 'false'),
+  createData('SPAIN', 'ES', '', '', 'false', 'false', 'false', 'false'),
+  createData('HUNGARY', 'HU', '', '', 'false', 'false', 'false', 'false'),
+  createData('HUNGMACEDONIA FARMERARY', 'MK', '', '', 'false', 'false', 'false', 'false'),
+  createData('ITALY', 'IT', '', '', 'false', 'false', 'false', 'false'),
+  createData('ROMANIA', 'RO', '', '', 'false', 'false', 'false', 'false'),
+  createData('SWITGERLAND', 'CH', '', '', 'false', 'false', 'false', 'false'),
+  createData('AUSTRIA', 'AT', '', '', 'false', 'false', 'false', 'false'),
 
 ];
 
@@ -192,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   search: {
-    marginRight: '-200px',
+    marginRight: '-250px',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.45),
@@ -242,10 +244,15 @@ const Countrylist = (props) => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-  const routechange = () => {
+  const routechangess = () => {
     // let history = useHistory();
 
     props.history.push("/Voyagelist");
+  }
+  const routechange = () => {
+    // let history = useHistory();
+
+    props.history.push("/Ports");
   }
   const handleDrawerClose = () => {
     setOpen(false);
@@ -301,26 +308,38 @@ const Countrylist = (props) => {
             {/* {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />} */}
           </IconButton>
         </div>
+        <List style={{ backgroundColor: "black", width: "600px", paddingRight: "30px" }}>
+          <Button style={{ flexDirection: "column", display: "grid" }}><MenuBookIcon style={{ color: "white", display: "grid", marginTop: "1px", marginLeft: "10px" }}></MenuBookIcon><Typography style={{ color: "white", fontSize: "8px", marginRight: "10px" }}>AddresBook</Typography>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <ViewAgendaIcon style={{ color: "white", display: "grid", marginLeft: "6px" }}></ViewAgendaIcon><Typography style={{ color: "white", fontSize: "8px", marginRight: "15px" }}>Cargo Names</Typography>
 
-        <List style={{ backgroundColor: "black", justifyContent: "space-between", width: "500px" }}>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <SwapHorizIcon onClick={() => routechangess()} style={{ color: "white", display: "grid", marginTop: "20px", marginLeft: "10px" }}></SwapHorizIcon><Typography style={{ color: "white", fontSize: "8px" }}>Voyagelist</Typography>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <SettingsEthernetIcon onClick={() => routechange()} style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "10px" }}></SettingsEthernetIcon><Typography style={{ color: "white", marginRight: "5px", fontSize: "8px" }}>Ports</Typography>
 
+          </Button>
 
-          <ContactMailIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "15px", marginTop: "20px" }}><span style={{ color: "white", display: "flex" }}><h2>Address Book</h2></span></ContactMailIcon>
-          <MenuBookIcon style={{ color: "white", display: "grid", marginBottom: "5px", marginLeft: "20px" }}></MenuBookIcon>
-          <ViewAgendaIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></ViewAgendaIcon>
-          <InboxIcon onClick={() => routechange()} style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
-          <SwapHorizIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></SwapHorizIcon>
+          <Button style={{ display: "grid" }}>
+            <SportsGolfIcon style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "8px" }}></SportsGolfIcon><Typography style={{ color: "white", fontSize: "8px" }}>Vessels</Typography>
+          </Button>
 
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></InboxIcon>
+          <Button style={{ display: "grid" }}>
+            <SettingsIcon style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "10px" }}></SettingsIcon><Typography style={{ color: "white", fontSize: "8px" }}>Security</Typography>
+          </Button>
 
-
-          <SettingsIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></SettingsIcon>
-          <LockOutlinedIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></LockOutlinedIcon>
-
-
-          <LocationOnIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></LocationOnIcon>
-
-          <LocationOnIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></LocationOnIcon>
+          <Button style={{ display: "grid" }}>
+            <LockOutlinedIcon style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "10px" }}></LockOutlinedIcon><Typography style={{ color: "white", fontSize: "8px" }}>Settings</Typography>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <LocationOnIcon style={{ color: "white", display: "grid", marginTop: "10px", marginRight: "15px" }}></LocationOnIcon><Typography style={{ color: "white", fontSize: "8px" }}>Location</Typography>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <LocationOnIcon style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "15px" }}></LocationOnIcon><Typography style={{ color: "white", fontSize: "8px" }}>Location</Typography>
+          </Button>
 
         </List>
 
@@ -331,7 +350,7 @@ const Countrylist = (props) => {
           {/* <Grid item xs={12} md={12} style={{ display: "flex", justifyContent: "space-between" }} > */}
           <Grid item xs={12} md={3} lg={3}>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <Typography style={{ marginRight: "20px" }}>
+              <Typography style={{ marginRight: "20px", marginLeft: "10px" }}>
                 <h9>Country  List</h9>
               </Typography>
 
@@ -345,8 +364,10 @@ const Countrylist = (props) => {
 
           </Grid>
 
-          <Grid md={3} xs={12} lg={3} style={{display: "flex",
-    justifyContent: "center"}}>
+          <Grid md={3} xs={12} lg={3} style={{
+            display: "flex",
+            justifyContent: "center"
+          }}>
             <div marginRight="10px" className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon marginLeft="10px" />
@@ -364,10 +385,12 @@ const Countrylist = (props) => {
           </Grid>
 
 
-          <Grid md={3} xs={12} lg={3} style={{display: "flex",
-    justifyContent: "center"}}>
-              <ReplayIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
-              <CloudDownloadIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
+          <Grid md={3} xs={12} lg={3} style={{
+            display: "flex",
+            justifyContent: "center"
+          }}>
+            <ReplayIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
+            <CloudDownloadIcon style={{ marginRight: "-15px", paddingTop: "10px" }} />
           </Grid>
 
 
@@ -416,7 +439,7 @@ const Countrylist = (props) => {
             </TableContainer>
           </Grid>
           <Grid item xs={3} md={3}>
-          <div marginRight="10px" className={classes.search}>
+            <div marginRight="10px" className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon marginLeft="10px" />
               </div>

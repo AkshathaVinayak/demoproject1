@@ -21,8 +21,9 @@ const Routes = () => {
         <div>
             <Router>
                 <Route exact path="/" component={Countrylist} />
-                <Route  path="/Ports" component={Ports} />
-                <Route  path="/Voyagelist" component={Voyagelist} />
+                <Route path="/Ports" component={Ports} />
+                <Route path="/Voyagelist" component={Voyagelist} />
+                <Route path="/Countrylist" component={Countrylist} />
 
             </Router>
         </div>

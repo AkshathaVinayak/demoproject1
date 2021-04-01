@@ -3,9 +3,16 @@ import clsx from 'clsx';
 import { useHistory } from "react-router";
 import { withRouter } from "react-router-dom";
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
- import Ports from '../Pages/Ports';
+import Ports from '../Pages/Ports';
+import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
+import CloseTwoToneIcon from '@material-ui/icons/CloseTwoTone';
 import Box from '@material-ui/core/Box';
+
 import Table from '@material-ui/core/Table';
+import SettingsIcon from '@material-ui/icons/Settings';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import ViewAgendaIcon from '@material-ui/icons/ViewAgenda';
+
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -32,6 +39,9 @@ import ContactMailIcon from '@material-ui/icons/ContactMail';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
+import SportsGolfIcon from '@material-ui/icons/SportsGolf';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
+
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -41,80 +51,53 @@ import MailIcon from '@material-ui/icons/Mail';
 import { green } from '@material-ui/core/colors';
 import InputBase from '@material-ui/core/InputBase';
 import { PinDropSharp } from '@material-ui/icons';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import Countrylist from '../Countrylist';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 const columns = [
-  { id: 'cname', label: 'Country Name', minWidth: 170 },
-  { id: 'isocode', label: 'Country\u00a0Code', minWidth: 100 },
+  { id: 'cname', label: 'Group', minWidth: 150 },
+  { id: 'isocode', label: 'Vessel Name', minWidth: 100 },
   {
     id: 'LMB',
-    label: 'Last Modified By',
-    minWidth: 170,
+    label: 'Vessel Type',
+    minWidth: 150,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'LMO',
-    label: 'Lat Modified On',
-    minWidth: 170,
+    label: 'Voyage Commencing',
+    minWidth: 150,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'WR',
-    label: 'War Risk(Y/N)',
-    minWidth: 170,
+    label: 'Commence on',
+    minWidth: 150,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
-  {
-    id: 'AMS',
-    label: 'AMS (Y/N)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-  {
-    id: 'SCA',
-    label: 'SCA (Y/N)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-  {
-    id: 'FRI',
-    label: 'FRI(Y/N)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
+
 ];
-function createData(cname, isocode, LMB, LMO, WR, AMS, SCA, FRI) {
+function createData(cname, isocode, LMB, LMO, WR) {
   // const WR = LMB / LMO;
-  return { cname, isocode, LMB, LMO, WR, AMS, SCA, FRI };
+  return { cname, isocode, LMB, LMO, WR };
 }
 
 const rows = [
-  createData('KAZAKHSTAN', 'KZ', '', ''),
-  createData('ANTARCTICA', 'AQ', '', ''),
-  createData('WEST BANK', 'PS', '', ''),
-  createData('PACIFIC ISLANDS', 'PW', '', ''),
-  createData('ARCTIC OCEAN', 'XQ', '', ''),
-  createData('UNITED STATES', 'US', '', ''),
-  createData('RUSSIA', 'RU', '', ''),
-  createData('EGYPT', 'EG', '', ''),
-  createData('SOUTH AFRICA', 'ZA', '', ''),
-  createData('GREECE', 'GR', '', ''),
-  createData('NETHERLANDS', 'NL', '', ''),
-  createData('BELGIUM', 'BE', '', ''),
-  createData('FRANCE', 'FR', '', ''),
-  createData('SPAIN', 'ES', '', ''),
-  createData('HUNGARY', 'HU', '', ''),
-  createData('HUNGMACEDONIA FARMERARY', 'MK', '', ''),
-  createData('ITALY', 'IT', '', ''),
-  createData('ROMANIA', 'RO', '', ''),
-  createData('SWITGERLAND', 'CH', '', ''),
-  createData('AUSTRIA', 'AT', '', ''),
+  <Divider />,
+  createData('- pushpp', '', '', ''),
+  createData('', ' ', '', ' ', ' '),
+  createData('', ' ', ' ', ' ', ' '),
+  createData('', ' ', ' ', '', ' '),
+  createData('', ' ', ' ', '', ' '),
+  createData('', ' ', ' ', ' ', ' '),
+  createData('', ' ', ' ', ' ', ' '),
+  createData('', ' ', ' ', ' ', ' '),
+  createData('', ' ', ' ', ' ', ' '),
+
 
 ];
 
@@ -187,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   search: {
-    marginRight: '-200px',
+    marginRight: '-700px',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.45),
@@ -196,6 +179,8 @@ const useStyles = makeStyles((theme) => ({
     },
     marginLeft: 100,
     width: '100%',
+    height: '50%',
+    marginTop: 15,
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       // width: 'auto',
@@ -215,7 +200,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'inherit',
   },
   inputInput: {
-    padding: theme.spacing(2, 20, 1, 0),
+    padding: theme.spacing(-5, 20, 1, 20),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
@@ -237,10 +222,15 @@ const Voyagelist = (props) => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-  const routechanges = () => {
+  const routechangess = () => {
     // let history = useHistory();
 
     props.history.push("/Countrylist");
+  }
+  const routechange = () => {
+    // let history = useHistory();
+
+    props.history.push("/Ports");
   }
   const handleDrawerClose = () => {
     setOpen(false);
@@ -264,9 +254,9 @@ const Voyagelist = (props) => {
             className={clsx(classes.menuButton, {
               [classes.hide]: open,
             })}
-          > <MenuIcon style={{ color: "grey" }} />
+          > <MenuIcon style={{ color: "red" }} />
           </IconButton>
-          <Typography variant="h7" paddingRight="10px" noWrap style={{ color: "grey", display: 'inline-table' }}>
+          <Typography variant="h5" paddingRight="10px" noWrap style={{ color: "grey", display: 'inline-table' }}>
             OPERATIONS
       </Typography>
           <Box color="blue" bgcolor="background.paper" p={1} paddingRight="10px" paddingLeft="800px">
@@ -297,49 +287,56 @@ const Voyagelist = (props) => {
           </IconButton>
         </div>
 
-        <List style={{ backgroundColor: "black", justifyContent: "space-between", width: "500px" }}>
+        <List style={{ backgroundColor: "black", width: "600px" }}>
 
+          <Button style={{ display: "grid" }}>
+            <SportsGolfIcon style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "8px" }}></SportsGolfIcon><Typography style={{ color: "white", fontSize: "8px" }}>Vessels</Typography>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <SettingsEthernetIcon style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "10px" }}></SettingsEthernetIcon><Typography style={{ color: "white", marginRight: "5px", fontSize: "8px" }}>Ports</Typography>
 
-          <ContactMailIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "15px", marginTop: "20px" }}><span style={{ color: "white", display: "flex" }}><h2>Address Book</h2></span></ContactMailIcon>
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "5px", marginLeft: "20px" }}></InboxIcon>
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></InboxIcon>
-          <InboxIcon onClick={() => routechanges()} style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></InboxIcon>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <LocationOnIcon onClick={() => routechangess()} style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "15px" }}></LocationOnIcon><Typography style={{ color: "white", fontSize: "8px" }}>Countrylist</Typography>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <SettingsIcon onClick={() => routechange()} style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "10px" }}></SettingsIcon><Typography style={{ color: "white", fontSize: "8px" }}>Portlist</Typography>
+          </Button>
 
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></InboxIcon>
+          <Button style={{ display: "grid" }}>
+            <LockOutlinedIcon style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "10px" }}></LockOutlinedIcon><Typography style={{ color: "white", fontSize: "8px" }}>Settings</Typography>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <LocationOnIcon style={{ color: "white", display: "grid", marginTop: "10px", marginRight: "15px" }}></LocationOnIcon><Typography style={{ color: "white", fontSize: "8px" }}>Location</Typography>
+          </Button>
+          <Button style={{ display: "grid" }}>
+            <LocationOnIcon style={{ color: "white", display: "grid", marginTop: "20px", marginRight: "15px" }}></LocationOnIcon><Typography style={{ color: "white", fontSize: "8px" }}>Location</Typography>
+          </Button>
 
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></InboxIcon>
-
-
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></InboxIcon>
-          <LockOutlinedIcon style={{ color: "white", display: "grid", marginBottom: "35px", marginLeft: "20px" }}></LockOutlinedIcon>
-
-
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></InboxIcon>
-
-          <InboxIcon style={{ color: "white", display: "grid", marginBottom: "25px", marginLeft: "20px" }}></InboxIcon>
 
         </List>
 
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Grid container style={{ backgroundColor: "lightblue" }}>
+        <Grid container style={{ backgroundColor: "lightblue", height: "50px", marginBottom: "10px" }}>
           {/* <Grid item xs={12} md={12} style={{ display: "flex", justifyContent: "space-between" }} > */}
           <Grid item xs={12} md={3} lg={3}>
-            <div style={{ width:"500px", display: "flex", alignItems: "center", justifyContent:"space-between" }}>
-              <Typography style={{ marginLeft: "20px"}}>
-                <h9>Voyage  List</h9>
+            <div style={{ width: "500px", display: "flex", alignItems: "center" }}>
+              <Typography style={{ marginLeft: "20px", color: "blue", marginTop: "-6px" }}>
+                <h4>Voyage  List</h4>
               </Typography>
 
-              <Button size="small" variant="outlined" color="primary" style={{width:"100px"}}>
-                <VisibilityOffIcon style={{display:"flex", height:"10px"}}/> <Typography style={{ fontSize:"10px"}}>Copy of Default</Typography>
+              <Button size="small" variant="outlined" color="primary" style={{ marginLeft: "10px", marginBottom: "15px", width: "150px", maginLeft: "5px", height: "30px", justifyContent: "center" }}>
+                <VisibilityOffIcon style={{ display: "flex", height: "15px" }} /> <Typography style={{ fontSize: "10px" }}><h3>Copy of Default</h3></Typography>
               </Button>
-              <Button size="small" variant="outlined" style={{backgroundColor:"green", marginLeft:"5px", marginRight:"5px",  height:"30px",  display:"flex", justifyContent:"center"}}>
-                <VisibilityOffIcon style={{height:"20px"}}/><Typography style={{fontSize:"10px"}}>My Vessel</Typography>
+              <Button size="small" variant="outlined" style={{ backgroundColor: "green", marginBottom: "18px", marginLeft: "10px", marginRight: "10px", height: "30px", display: "flex", justifyContent: "center" }}>
+                <VisibilityOffIcon style={{ height: "15px" }} /><Typography style={{ fontSize: "10px" }}>My Vessel</Typography>
               </Button>
-              <Button size="small" variant="outlined" style={{display:"flex", justifyContent:"center"}}>
-             <AddIcon />
+              <Button size="small" variant="outlined" style={{ display: "flex", borderColor: "blue", height: "20px", width: "10px", justifyContent: "center", marginBottom: "15px" }}>
+                <AddIcon style={{ color: "blue" }} />
               </Button>
+
 
             </div>
           </Grid>
@@ -348,8 +345,10 @@ const Voyagelist = (props) => {
 
           </Grid>
 
-          <Grid md={3} xs={12} lg={3} style={{display: "flex",
-    justifyContent: "center"}}>
+          <Grid md={3} xs={12} lg={3} style={{
+            display: "flex",
+            justifyContent: "center"
+          }}>
             <div marginRight="10px" className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon marginLeft="10px" />
@@ -367,38 +366,41 @@ const Voyagelist = (props) => {
           </Grid>
 
 
-          <Grid md={3} xs={12} lg={3} style={{display: "flex",
+          {/* <Grid md={3} xs={12} lg={3} style={{display: "flex",
     justifyContent: "center"}}>
-              <ReplayIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
-              <CloudDownloadIcon style={{ marginRight: "10px", paddingTop: "10px" }} />
-          </Grid>
+              <ReplayIcon style={{ marginRight: "80px", paddingTop: "10px" }} />
+              <CloudDownloadIcon style={{ marginLeft: "-70px", paddingTop: "10px" }} />
+          </Grid> */}
 
 
           {/* </ Grid> */}
         </Grid>
         <Grid container>
           <Grid item xs={12} md={12}>
-            <Typography>Select one or more rows to enable actions.</Typography>
+            <Typography style={{ color: "grey" }}>Select one or more rows to enable actions.</Typography>
           </Grid>
-          <Divider />
         </Grid>
+        <Divider />
         <Grid container>
-          <Grid item xs={12} md={12}>;
-            <Typography style={{backgroundColor:"blue"}}>Ops Coordinator<CloseIcon style={{padding:"10px"}}/></Typography>
+          <Grid item xs={3} md={3}>
+            <Box style={{ display: "flex", borderRadius: "50%" }}>
+              <Box style={{ borderRadius: "50%", color: "white", display: "flex", justifyContent: "left" }}  ><Typography style={{ backgroundColor: "blue", borderRadius: "20px", paddingLeft: "10px", paddingBottom: "5px" }}>Ops Coordinator<CloseIcon style={{ paddingTop: "10px" }} /></Typography><CloseTwoToneIcon style={{ color: "white", height: "30px", width: "100px" }} />
+              </Box>
+            </Box>
           </Grid>
         </Grid>
         <Divider />
         <Grid container>
           <Grid item xs={9} md={9}>
             <TableContainer className={classes.container}>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
+              <Table size="medium" stickyHeader aria-label="sticky table">
+                <TableHead >
                   <TableRow>
                     {columns.map((column) => (
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ minWidth: column.minWidth }}
+                        style={{ minWidth: column.minWidth, borderBlock: "red" }}
                       >
                         {column.label}
                       </TableCell>
@@ -425,7 +427,7 @@ const Voyagelist = (props) => {
             </TableContainer>
           </Grid>
           <Grid item xs={3} md={3}>
-          <div marginRight="10px" className={classes.search}>
+            {/* <div marginRight="10px" className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon marginLeft="10px" />
               </div>
@@ -438,7 +440,7 @@ const Voyagelist = (props) => {
                 }}
                 inputProps={{ 'aria-label': 'search' }}
               />
-            </div>
+            </div> */}
 
           </Grid>
         </Grid>
